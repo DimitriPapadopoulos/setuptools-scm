@@ -47,7 +47,7 @@
 Configures how the version number is constructed given a
 [ScmVersion][setuptools_scm.version.ScmVersion] instance and should return a string
 representing the version.
-### Available Implementations
+### Available implementations
 
 `guess-next-dev (default)`
 :   Automatically guesses the next development version (default).
