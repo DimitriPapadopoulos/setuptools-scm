@@ -28,10 +28,10 @@ Use the `[tool.setuptools_scm]` section when you need to:
 - Configure fallback behavior (`fallback_version`)
 - Or any other non-default behavior
 
-## configuration parameters
+## Configuration Parameters
 
 Configuration parameters can be configured in `pyproject.toml` or `setup.py`.
-Callables or other Python objects have to be passed in `setup.py` (via the `use_scm_version` keyword argument).
+Callables or other Python objects must be passed in `setup.py` (via the `use_scm_version` keyword argument).
 
 
 `root : Path | PathLike[str]`
@@ -65,18 +65,18 @@ Callables or other Python objects have to be passed in `setup.py` (via the `use_
     `scm_version` is the `ScmVersion` instance the current `version` was rendered from
 
 
-`write_to: Pathlike[str] | Path | None = None`
-:  (deprecated) legacy option to create a version file relative to the scm root
-   it's broken for usage from a sdist and fixing it would be a fatal breaking change,
+`write_to: Path | PathLike[str] | None = None`
+:  (deprecated) legacy option to create a version file relative to the SCM root.
+   It's broken for usage from an sdist and fixing it would be a fatal breaking change,
    use `version_file` instead.
 
-`relative_to: Path|Pathlike[str] = "pyproject.toml"`
+`relative_to: Path | PathLike[str] = "pyproject.toml"`
 :   A file/directory from which the root can be resolved.
     Typically called by a script or module that is not in the root of the
     repository to point `setuptools_scm` at the root of the repository by
     supplying `__file__`.
 
-`tag_regex: str|Pattern[str]`
+`tag_regex: str | Pattern[str]`
 :   A Python regex string to extract the version part from any SCM tag.
     The regex needs to contain either a single match group, or a group
     named `version`, that captures the actual version information.
@@ -91,12 +91,12 @@ Callables or other Python objects have to be passed in `setup.py` (via the `use_
         and `1.0.0`. For best practices on tag naming, see
         [Version Tag Formats](usage.md#version-tag-formats).
 
-`parentdir_prefix_version: str|None = None`
+`parentdir_prefix_version: str | None = None`
 :   If the normal methods for detecting the version (SCM version,
     sdist metadata) fail, and the parent directory name starts with
     `parentdir_prefix_version`, then this prefix is stripped and the rest of
     the parent directory name is matched with `tag_regex` to get a version
-    string.  If this parameter is unset (the default), then this fallback is
+    string. If this parameter is unset (the default), then this fallback is
     not used.
 
     This was intended to cover GitHub's "release tarballs",
@@ -154,7 +154,7 @@ Callables or other Python objects have to be passed in `setup.py` (via the `use_
     Defaults to `True`. Setting this to `False` is equivalent to setting
     `version_cls` to [setuptools_scm.NonNormalizedVersion][]
 
-`version_cls: type|str = packaging.version.Version`
+`version_cls: type | str = packaging.version.Version`
 :   An optional class used to parse, verify and possibly normalize the version
     string. Its constructor should receive a single string argument, and its
     `str` should return the normalized version string to use.
@@ -166,12 +166,12 @@ Callables or other Python objects have to be passed in `setup.py` (via the `use_
     is integrated in a setuptools packaging process, the non-normalized
     version number will appear in all files (see `version_file` note).
 
-    !!! note "normalization still applies to artifact filenames"
+    !!! note "Normalization Still Applies to Artifact Filenames"
         Setuptools will still normalize it to create the final distribution,
-        so as to stay compliant with the python packaging standards.
+        so as to stay compliant with the Python packaging standards.
 
 
-## environment variables
+## Environment Variables
 
 `SETUPTOOLS_SCM_PRETEND_VERSION`
 :   used as the primary source for the version number
@@ -195,28 +195,28 @@ Callables or other Python objects have to be passed in `setup.py` (via the `use_
     this will take precedence over ``SETUPTOOLS_SCM_PRETEND_VERSION``
 
 `SETUPTOOLS_SCM_DEBUG`
-:    enable the debug logging
+:    Enable debug logging
 
 `SOURCE_DATE_EPOCH`
-:   used as the timestamp from which the
+:   Used as the timestamp from which the
     ``node-and-date`` and ``node-and-timestamp`` local parts are
     derived, otherwise the current time is used
     (https://reproducible-builds.org/docs/source-date-epoch/)
 
 `SETUPTOOLS_SCM_IGNORE_VCS_ROOTS`
-:   a ``os.pathsep`` separated list
+:   A ``os.pathsep`` separated list
     of directory names to ignore for root finding
 
 `SETUPTOOLS_SCM_HG_COMMAND`
-:   command used for running Mercurial (defaults to ``hg``)
+:   Command used for running Mercurial (defaults to ``hg``)
 
-    for example, set this to ``chg`` to reduce start-up overhead of Mercurial
-
-
+    For example, set this to ``chg`` to reduce start-up overhead of Mercurial
 
 
 
-## automatic file inclusion
+
+
+## Automatic File Inclusion
 
 !!! warning "Setuptools File Finder Integration"
 
@@ -276,9 +276,9 @@ tar -tzf dist/package-*.tar.gz
     The file finder cannot be disabled through configuration - it's automatically active when setuptools-scm is installed. If you need to disable it completely, you must remove setuptools-scm from your build environment (which also means you can't use it for versioning).
 
 
-## api reference
+## API Reference
 
-### constants
+### Constants
 
 ::: setuptools_scm._config.DEFAULT_TAG_REGEX
     options:
@@ -289,7 +289,7 @@ tar -tzf dist/package-*.tar.gz
       heading_level: 4
 
 
-### the configuration class
+### The Configuration Class
 ::: setuptools_scm.Configuration
     options:
       heading_level: 4

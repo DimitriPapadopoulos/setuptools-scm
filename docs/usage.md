@@ -110,7 +110,7 @@ $ python -m setuptools_scm # example from running local after changes
 7.1.1.dev149+g5197d0f.d20230727
 ```
 
- and to list all tracked by the scm:
+and to list all files tracked by the SCM:
 
 ```commandline
 $ python -m setuptools_scm ls # output trimmed for brevity
@@ -121,14 +121,14 @@ $ python -m setuptools_scm ls # output trimmed for brevity
 ...
 ```
 
-!!! note "Committed files only"
+!!! note "Committed Files Only"
 
-    currently only committed files are listed, this might change in the future
+    Currently only committed files are listed; this might change in the future.
 
-!!! warning "sdists/archives don't provide file lists"
+!!! warning "Sdists/Archives Don't Provide File Lists"
 
-    Currently there is no builtin mechanism
-    to safely transfer the file lists to sdists or obtaining them from archives.
+    Currently there is no built-in mechanism
+    to safely transfer file lists to sdists or obtain them from archives.
     Coordination for setuptools and hatch is ongoing.
 
 To explore other options, try
@@ -300,7 +300,7 @@ where `{next_version}` is the next version number after the latest tag
 The next version is calculated by adding `1` to the last numeric component of
 the tag.
 
-For Git projects, the version relies on  [git describe](https://git-scm.com/docs/git-describe),
+For Git projects, the version relies on [git describe](https://git-scm.com/docs/git-describe),
 so you will see an additional `g` prepended to the `{revision hash}`.
 
 
@@ -496,7 +496,7 @@ UserWarning: unprocessed git archival found (no export subst applied)
 This typically happens when:
 
 1. **Building from working directory**: You're running `python -m build` directly in your repository
-2. **Sdist extraction**: A build tool extracts your sdist to build wheels, but the extracted directory isn't a git repository
+2. **Sdist extraction**: A build tool extracts your sdist to build wheels, but the extracted directory isn't a Git repository
 
 #### Recommended build workflows
 
@@ -509,7 +509,7 @@ exclude .git_archival.txt
 ```
 
 **For release builds from archives:**
-Build from an actual git archive to ensure proper template expansion:
+Build from an actual Git archive to ensure proper template expansion:
 
 ```commandline
 # Create archive from a specific tag/commit
@@ -521,7 +521,7 @@ $ python -m build .
 ```
 
 **For automated releases:**
-Many CI systems and package repositories (like GitHub Actions) automatically handle this correctly when building from git archives.
+Many CI systems and package repositories (like GitHub Actions) automatically handle this correctly when building from Git archives.
 
 #### Integration with package managers
 

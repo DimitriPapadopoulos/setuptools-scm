@@ -28,7 +28,7 @@ This ensures a clean Git working directory before setuptools-scm detects the ver
 Reference: [ReadTheDocs Build Customization - Avoid having a dirty Git index](https://docs.readthedocs.com/platform/stable/build-customization.html#avoid-having-a-dirty-git-index)
 
 
-### Enforce fail on shallow repositories
+### Enforce Fail on Shallow Repositories
 
 ReadTheDocs may sometimes use shallow Git clones that lack the full history needed for proper version detection. You can use setuptools-scm's environment variable override system to enforce `fail_on_shallow` when building on ReadTheDocs:
 
@@ -342,4 +342,4 @@ print(f"SETUPTOOLS_SCM_OVERRIDES_FOR_{env_var_name}")
 # Output: SETUPTOOLS_SCM_OVERRIDES_FOR_MY_AWESOME_PACKAGE
 ```
 
-**Fetch depth**: Always use `fetch-depth: 0` in GitHub Actions to ensure setuptools-scm has access to the full git history for proper version calculation.
+**Fetch depth**: Always use `fetch-depth: 0` in GitHub Actions to ensure setuptools-scm has access to the full Git history for proper version calculation.
