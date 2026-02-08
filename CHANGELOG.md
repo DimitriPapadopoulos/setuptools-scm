@@ -5,7 +5,7 @@
 
 ### Fixed
 
-- fix #1231: don't warn about `tool.setuptools.dynamic.version` when only using file finder.
+- Fix #1231: don't warn about `tool.setuptools.dynamic.version` when only using file finder.
   The warning about combining version guessing with setuptools dynamic versions should only
   be issued when setuptools-scm is performing version inference, not when it's only being
   used for its file finder functionality.
@@ -15,7 +15,7 @@
 
 ### Fixed
 
-- fix #1216: accept and create a warning for usages of `version = attr:` in setuptools config.
+- Fix #1216: accept and create a warning for usages of `version = attr:` in setuptools config,
   unfortunately dozens of projects cargo-culted that antipattern
 
 
@@ -23,7 +23,7 @@
 
 ### Added
 
-- add simplified activation via `setuptools-scm[simple]` extra
+- Add simplified activation via `setuptools-scm[simple]` extra
 
   A new streamlined way to enable version inference without requiring a `[tool.setuptools_scm]` section.
   When `setuptools-scm[simple]` is in `build-system.requires` and `version` is in `project.dynamic`,
@@ -32,28 +32,28 @@
 
 ### Removed
 
-- unchecked simplified activation - too many projects use setups where it would fail
+- Unchecked simplified activation - too many projects use setups where it would fail
 
 ### Changed
 
-- refine activation logic and add unittest for the relevant cases instead of trying to speedrun setuptools
+- Refine activation logic and add unittest for the relevant cases instead of trying to speedrun setuptools
 
 ## v9.1.1 (yanked)
 
 ### Fixed
 
-- fix #1194: correctly handle version keyword when pyproject metadata is missing
+- Fix #1194: correctly handle version keyword when pyproject metadata is missing
 
 
 ## v9.1.0 (yanked)
 
 ### Fixed
 
-- complete reiteration of the decision logic for enabling version inference on setuptools_scm
+- Complete reiteration of the decision logic for enabling version inference on setuptools_scm
 
-  - shared logic for the important parts
-  - proper deferring based in precedence of finalize options vs version keyword
-  - unittestable for the parsing parts and the decision steps
+  - Shared logic for the important parts
+  - Proper deferring based on precedence of finalize options vs version keyword
+  - Unittestable for the parsing parts and the decision steps
 
 
 
@@ -61,39 +61,39 @@
 
 ### Fixed
 
-- fix #1184: verify version is dynamic if the dependency is used as indicator for enabling
+- Fix #1184: verify version is dynamic if the dependency is used as indicator for enabling
 
 ## v9.0.2 (yanked)
 
 ### Fixed
 
-- fix #1184: in case setuptools-scm is a indirect dependency and no pyproject.toml section exists - don't infer the version
+- Fix #1184: in case setuptools-scm is an indirect dependency and no pyproject.toml section exists - don't infer the version
 
 
 ## v9.0.1 (yanked)
 
 ### Fixed
 
-- fix #1180: ensure version dumping works when no scm_version is given (problems in downstreams)
-- fix #1181: config - reintroduce control over when we expect a section to be present
+- Fix #1180: ensure version dumping works when no scm_version is given (problems in downstreams)
+- Fix #1181: config - reintroduce control over when we expect a section to be present,
              as it turns out there's valid use cases where setuptools_scm is not direct part of the dependencies
-- add codespell pre-commit hook
+- Add codespell pre-commit hook
 
 ## v9.0.0 (yanked)
 
 ### Breaking
 
-- fix #1019: pass python version build tags from scm version to results properly
+- fix #1019: pass Python version build tags from SCM version to results properly
 
 ### Added
 
 - add `setuptools-scm` console_scripts entry point to make the CLI directly executable
 - make Mercurial command configurable by environment variable `SETUPTOOLS_SCM_HG_COMMAND`
-- fix #1099 use file modification times for dirty working directory timestamps instead of current time
+- fix #1099: use file modification times for dirty working directory timestamps instead of current time
 - fix #1059: add `SETUPTOOLS_SCM_PRETEND_METADATA` environment variable to override individual ScmVersion fields
 - add `scm` parameter support to `get_version()` function for nested SCM configuration
-- fix #987: expand documentation on git archival files and add cli tools for good defaults
-- fix #311: document github/gitlab ci pipelines that enable auto-upload to test-pypi/pypi
+- fix #987: expand documentation on Git archival files and add CLI tools for good defaults
+- fix #311: document GitHub/GitLab CI pipelines that enable auto-upload to test-PyPI/PyPI
 - fix #1022: allow `version_keyword` to override `infer_version` when configuration differs
 - fix #554: document `fallback_root` parameter in programmatic usage and configuration
 

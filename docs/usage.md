@@ -58,7 +58,7 @@ version_file = "src/mypackage/_version.py"
 # Example: Git-specific configuration
 [tool.setuptools_scm.scm.git]
 pre_parse = "fail_on_missing_submodules"  # Fail if submodules are not initialized
-describe_command = "git describe --dirty --tags --long --exclude *js*"  # Custom describe command
+describe_command = "git describe --dirty --tags --long --exclude *js*"  # Custom Git describe command
 ```
 
 Projects must support PEP 518 ([pip](https://pypi.org/project/pip) and
@@ -262,7 +262,7 @@ version that is used to cache the results of the pip install process:
 ```dockerfile
 FROM python
 COPY pyproject.toml
-ARG PSEUDO_VERSION=1 # strongly recommended to update based on git describe
+ARG PSEUDO_VERSION=1 # strongly recommended to update based on Git describe
 RUN SETUPTOOLS_SCM_PRETEND_VERSION_FOR_MY_PACKAGE=${PSEUDO_VERSION} pip install -e .[test]
 RUN --mount=source=.git,target=.git,type=bind pip install -e .
 ```
@@ -360,7 +360,7 @@ v1.0.0+20240115
 
 1. **Clarity**: Makes it immediately obvious that the tag represents a version
 2. **Convention**: Widely adopted standard across the software industry
-3. **Git compatibility**: Works well with git's tag sorting and filtering
+3. **Git compatibility**: Works well with Git's tag sorting and filtering
 4. **Tool compatibility**: Many other tools expect version tags to have a "v" prefix
 
 ### Custom Tag Patterns
@@ -469,9 +469,9 @@ tagging style.
 
 !!! note
 
-    If your git host provider does not properly expand `describe-name`, you may
+    If your Git host provider does not properly expand `describe-name`, you may
     need to include `ref-names: $Format:%D$`. But **beware**, this can often
-    lead to the git archive's checksum changing after a commit is added
+    lead to the Git archive's checksum changing after a commit is added
     post-release. See [this issue][git-archive-issue] for more details.
 
 
@@ -543,16 +543,16 @@ exclude .gitattributes
 
 **Problem: "unprocessed git archival found" warnings**
 - ✅ **Solution**: Add `exclude .git_archival.txt` to `MANIFEST.in` for development builds
-- ✅ **Alternative**: Build from actual git archives for releases
+- ✅ **Alternative**: Build from actual Git archives for releases
 
 **Problem: "git archive did not support describe output" warnings**
 - ℹ️ **Information**: This is expected when `.git_archival.txt` contains unexpanded templates
-- ✅ **Solution**: Same as above - exclude file or build from git archives
+- ✅ **Solution**: Same as above - exclude file or build from Git archives
 
 **Problem: Version detection fails in git archives**
 - ✅ **Check**: Is `.gitattributes` configured with `export-subst`?
-- ✅ **Check**: Are you building from a properly created git archive?
-- ✅ **Check**: Does your git hosting provider support archive template expansion?
+- ✅ **Check**: Are you building from a properly created Git archive?
+- ✅ **Check**: Does your Git hosting provider support archive template expansion?
 
 !!! warning "Branch Names and Archive Stability"
 
