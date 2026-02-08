@@ -1,0 +1,1885 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../integrations/">
+      
+      
+        <link rel="next" href="../overrides/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Extending setuptools-scm - setuptools scm</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#extending-setuptools-scm" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="setuptools scm" class="md-header__button md-logo" aria-label="setuptools scm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            setuptools scm
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Extending setuptools-scm
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="setuptools scm" class="md-nav__button md-logo" aria-label="setuptools scm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    setuptools scm
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../customizing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customizing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extending setuptools-scm
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extending setuptools-scm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#adding-a-new-scm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding a new SCM
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding a new SCM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-reference-for-scm-version-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Reference for SCM Version Objects
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Reference for SCM Version Objects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ScmVersion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ScmVersion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion.branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        branch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion.config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion.dirty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dirty
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion.distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        distance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion.exact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        exact
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion.node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion.node_date" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        node_date
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion.preformatted" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        preformatted
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion.short_node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        short_node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion.tag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tag
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion.time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        time
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion.format_choice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        format_choice
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion.format_with" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        format_with
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.meta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        meta
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-number-construction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version number construction
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Version number construction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scmversion_scheme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        setuptools_scm.version_scheme
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#available-implementations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Implementations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scmlocal_scheme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        setuptools_scm.local_scheme
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="setuptools_scm.local_scheme">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#available-implementations_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Implementations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overrides/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overrides
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#adding-a-new-scm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding a new SCM
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adding a new SCM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-reference-for-scm-version-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Reference for SCM Version Objects
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Reference for SCM Version Objects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ScmVersion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ScmVersion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion.branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        branch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion.config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion.dirty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dirty
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion.distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        distance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion.exact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        exact
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion.node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion.node_date" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        node_date
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion.preformatted" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        preformatted
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion.short_node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        short_node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion.tag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tag
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion.time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        time
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion.format_choice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        format_choice
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.ScmVersion.format_with" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        format_with
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.version.meta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        meta
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-number-construction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version number construction
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Version number construction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scmversion_scheme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        setuptools_scm.version_scheme
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#available-implementations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Implementations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scmlocal_scheme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        setuptools_scm.local_scheme
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="setuptools_scm.local_scheme">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#available-implementations_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Implementations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="extending-setuptools-scm">Extending setuptools-scm</h1>
+<p><code>setuptools-scm</code> uses <a href="https://packaging.python.org/en/latest/specifications/entry-points/">entry-point</a> based hooks to extend its default capabilities.</p>
+<h2 id="adding-a-new-scm">Adding a new SCM</h2>
+<p><code>setuptools-scm</code> provides two entrypoints for adding new SCMs:</p>
+<dl>
+<dt><code>setuptools_scm.parse_scm</code></dt>
+<dd>
+<p>A function used to parse the metadata of the current workdir
+using the name of the control directory/file of your SCM as the
+entrypoint's name. E.g. for the built-in entrypoint for Git the
+entrypoint is named <code>.git</code> and references <code>setuptools_scm.git:parse</code></p>
+<p>The return value MUST be a <a class="autorefs autorefs-internal" title="setuptools_scm.version.ScmVersion
+
+
+  
+      dataclass
+  " href="#setuptools_scm.version.ScmVersion"><code>setuptools_scm.version.ScmVersion</code></a> instance
+created by the function <a class="autorefs autorefs-internal" title="setuptools_scm.version.meta" href="#setuptools_scm.version.meta"><code>setuptools_scm.version.meta</code></a>.</p>
+</dd>
+<dt><code>setuptools_scm.files_command</code></dt>
+<dd>Either a string containing a shell command that prints all SCM-managed
+   files in its current working directory or a callable, that given a
+   pathname will return that list.</dd>
+</dl>
+<p>Also uses the name of your SCM control directory as name of the entrypoint.</p>
+<h3 id="api-reference-for-scm-version-objects">API Reference for SCM Version Objects</h3>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h4 id="setuptools_scm.version.ScmVersion" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">setuptools_scm.version.ScmVersion</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+</h4>
+
+
+    <div class="doc doc-contents first">
+
+
+
+        <p>represents a parsed version from scm</p>
+
+
+
+
+
+
+
+
+              <details class="mkdocstrings-source">
+                <summary>Source code in <code>src/setuptools_scm/version.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<span class="k">class</span> <span class="nc">ScmVersion</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;represents a parsed version from scm&quot;&quot;&quot;</span>
+
+    <span class="n">tag</span><span class="p">:</span> <span class="n">_v</span><span class="o">.</span><span class="n">Version</span> <span class="o">|</span> <span class="n">_v</span><span class="o">.</span><span class="n">NonNormalizedVersion</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;the related tag or preformatted version&quot;&quot;&quot;</span>
+    <span class="n">config</span><span class="p">:</span> <span class="n">_config</span><span class="o">.</span><span class="n">Configuration</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;the configuration used to parse the version&quot;&quot;&quot;</span>
+    <span class="n">distance</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;the number of commits since the tag&quot;&quot;&quot;</span>
+    <span class="n">node</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;the shortened node id&quot;&quot;&quot;</span>
+    <span class="n">dirty</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;whether the working copy had uncommitted changes&quot;&quot;&quot;</span>
+    <span class="n">preformatted</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;whether the version string was preformatted&quot;&quot;&quot;</span>
+    <span class="n">branch</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;the branch name if any&quot;&quot;&quot;</span>
+    <span class="n">node_date</span><span class="p">:</span> <span class="n">date</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;the date of the commit if available&quot;&quot;&quot;</span>
+    <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">_source_epoch_or_utc_now</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;the current time or source epoch time</span>
+<span class="sd">    only set for unit-testing version schemes</span>
+<span class="sd">    for real usage it must be `now(utc)` or `SOURCE_EPOCH`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">exact</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;returns true checked out exactly on a tag and no local changes apply&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">distance</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">dirty</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">short_node</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the node formatted for output.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">_format_node_for_output</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;&lt;ScmVersion </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="si">}</span><span class="s2"> dist=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">distance</span><span class="si">}</span><span class="s2"> &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;node=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="si">}</span><span class="s2"> dirty=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dirty</span><span class="si">}</span><span class="s2"> branch=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">branch</span><span class="si">}</span><span class="s2">&gt;&quot;</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">format_with</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fmt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;format a given format string with attributes of this object&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">time</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">,</span>
+            <span class="n">tag</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span>
+            <span class="n">distance</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">distance</span><span class="p">,</span>
+            <span class="n">node</span><span class="o">=</span><span class="n">_format_node_for_output</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="p">),</span>
+            <span class="n">dirty</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dirty</span><span class="p">,</span>
+            <span class="n">branch</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">branch</span><span class="p">,</span>
+            <span class="n">node_date</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">node_date</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kw</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">format_choice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clean_format</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dirty_format</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;given `clean_format` and `dirty_format`</span>
+
+<span class="sd">        choose one based on `self.dirty` and format it using `self.format_with`&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">format_with</span><span class="p">(</span><span class="n">dirty_format</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dirty</span> <span class="k">else</span> <span class="n">clean_format</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">format_next_version</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">guess_next</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="n">Concatenate</span><span class="p">[</span><span class="n">ScmVersion</span><span class="p">,</span> <span class="n">_P</span><span class="p">],</span> <span class="nb">str</span><span class="p">],</span>
+        <span class="n">fmt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{guessed}</span><span class="s2">.dev</span><span class="si">{distance}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">k</span><span class="p">:</span> <span class="n">_P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kw</span><span class="p">:</span> <span class="n">_P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">guessed</span> <span class="o">=</span> <span class="n">guess_next</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">format_with</span><span class="p">(</span><span class="n">fmt</span><span class="p">,</span> <span class="n">guessed</span><span class="o">=</span><span class="n">guessed</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h5 id="setuptools_scm.version.ScmVersion.branch" class="doc doc-heading">
+            <span class="doc doc-object-name doc-attribute-name">branch</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">branch</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>the branch name if any</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h5 id="setuptools_scm.version.ScmVersion.config" class="doc doc-heading">
+            <span class="doc doc-object-name doc-attribute-name">config</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">config</span><span class="p">:</span> <span class="n">Configuration</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>the configuration used to parse the version</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h5 id="setuptools_scm.version.ScmVersion.dirty" class="doc doc-heading">
+            <span class="doc doc-object-name doc-attribute-name">dirty</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">dirty</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>whether the working copy had uncommitted changes</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h5 id="setuptools_scm.version.ScmVersion.distance" class="doc doc-heading">
+            <span class="doc doc-object-name doc-attribute-name">distance</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">distance</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>the number of commits since the tag</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h5 id="setuptools_scm.version.ScmVersion.exact" class="doc doc-heading">
+            <span class="doc doc-object-name doc-attribute-name">exact</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">exact</span><span class="p">:</span> <span class="nb">bool</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>returns true checked out exactly on a tag and no local changes apply</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h5 id="setuptools_scm.version.ScmVersion.node" class="doc doc-heading">
+            <span class="doc doc-object-name doc-attribute-name">node</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">node</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>the shortened node id</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h5 id="setuptools_scm.version.ScmVersion.node_date" class="doc doc-heading">
+            <span class="doc doc-object-name doc-attribute-name">node_date</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">node_date</span><span class="p">:</span> <span class="n">date</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>the date of the commit if available</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h5 id="setuptools_scm.version.ScmVersion.preformatted" class="doc doc-heading">
+            <span class="doc doc-object-name doc-attribute-name">preformatted</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">preformatted</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>whether the version string was preformatted</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h5 id="setuptools_scm.version.ScmVersion.short_node" class="doc doc-heading">
+            <span class="doc doc-object-name doc-attribute-name">short_node</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">short_node</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Return the node formatted for output.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h5 id="setuptools_scm.version.ScmVersion.tag" class="doc doc-heading">
+            <span class="doc doc-object-name doc-attribute-name">tag</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">tag</span><span class="p">:</span> <span class="n">Version</span> <span class="o">|</span> <span class="n">NonNormalizedVersion</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>the related tag or preformatted version</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h5 id="setuptools_scm.version.ScmVersion.time" class="doc doc-heading">
+            <span class="doc doc-object-name doc-attribute-name">time</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">time</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">_source_epoch_or_utc_now</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>the current time or source epoch time
+only set for unit-testing version schemes
+for real usage it must be <code>now(utc)</code> or <code>SOURCE_EPOCH</code></p>
+
+    </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="setuptools_scm.version.ScmVersion.format_choice" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">format_choice</span>
+
+
+</h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">format_choice</span><span class="p">(</span><span class="n">clean_format</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dirty_format</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>given <code>clean_format</code> and <code>dirty_format</code></p>
+<p>choose one based on <code>self.dirty</code> and format it using <code>self.format_with</code></p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/setuptools_scm/version.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">format_choice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clean_format</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dirty_format</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;given `clean_format` and `dirty_format`</span>
+
+<span class="sd">    choose one based on `self.dirty` and format it using `self.format_with`&quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">format_with</span><span class="p">(</span><span class="n">dirty_format</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dirty</span> <span class="k">else</span> <span class="n">clean_format</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="setuptools_scm.version.ScmVersion.format_with" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">format_with</span>
+
+
+</h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">format_with</span><span class="p">(</span><span class="n">fmt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>format a given format string with attributes of this object</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/setuptools_scm/version.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">format_with</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fmt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;format a given format string with attributes of this object&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">time</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">,</span>
+        <span class="n">tag</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">,</span>
+        <span class="n">distance</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">distance</span><span class="p">,</span>
+        <span class="n">node</span><span class="o">=</span><span class="n">_format_node_for_output</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="p">),</span>
+        <span class="n">dirty</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dirty</span><span class="p">,</span>
+        <span class="n">branch</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">branch</span><span class="p">,</span>
+        <span class="n">node_date</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">node_date</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kw</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="setuptools_scm.version.meta" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">setuptools_scm.version.meta</span>
+
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">meta</span><span class="p">(</span><span class="n">tag</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">_VersionT</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">dirty</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">preformatted</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">branch</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Configuration</span><span class="p">,</span> <span class="n">node_date</span><span class="p">:</span> <span class="n">date</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ScmVersion</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/setuptools_scm/version.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">meta</span><span class="p">(</span>
+    <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">_VersionT</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">distance</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">dirty</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">node</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">preformatted</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">branch</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">config</span><span class="p">:</span> <span class="n">_config</span><span class="o">.</span><span class="n">Configuration</span><span class="p">,</span>
+    <span class="n">node_date</span><span class="p">:</span> <span class="n">date</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ScmVersion</span><span class="p">:</span>
+    <span class="n">parsed_version</span><span class="p">:</span> <span class="n">_VersionT</span>
+    <span class="c1"># Enhanced string validation for preformatted versions</span>
+    <span class="k">if</span> <span class="n">preformatted</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="c1"># Validate PEP 440 compliance using NonNormalizedVersion</span>
+        <span class="c1"># Let validation errors bubble up to the caller</span>
+        <span class="n">parsed_version</span> <span class="o">=</span> <span class="n">_v</span><span class="o">.</span><span class="n">NonNormalizedVersion</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Use existing _parse_tag logic for non-preformatted or already validated inputs</span>
+        <span class="n">parsed_version</span> <span class="o">=</span> <span class="n">_parse_tag</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="n">preformatted</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+
+    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;version </span><span class="si">%s</span><span class="s2"> -&gt; </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">parsed_version</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">parsed_version</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Can&#39;t parse version </span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">scm_version</span> <span class="o">=</span> <span class="n">ScmVersion</span><span class="p">(</span>
+        <span class="n">parsed_version</span><span class="p">,</span>
+        <span class="n">distance</span><span class="o">=</span><span class="n">distance</span><span class="p">,</span>
+        <span class="n">node</span><span class="o">=</span><span class="n">node</span><span class="p">,</span>
+        <span class="n">dirty</span><span class="o">=</span><span class="n">dirty</span><span class="p">,</span>
+        <span class="n">preformatted</span><span class="o">=</span><span class="n">preformatted</span><span class="p">,</span>
+        <span class="n">branch</span><span class="o">=</span><span class="n">branch</span><span class="p">,</span>
+        <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span>
+        <span class="n">node_date</span><span class="o">=</span><span class="n">node_date</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">scm_version</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">scm_version</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">scm_version</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div><h2 id="version-number-construction">Version number construction</h2>
+<h3 id="setuptools_scmversion_scheme"><code>setuptools_scm.version_scheme</code></h3>
+<p>Configures how the version number is constructed given a
+<a class="autorefs autorefs-internal" title="setuptools_scm.version.ScmVersion
+
+
+  
+      dataclass
+  " href="#setuptools_scm.version.ScmVersion">ScmVersion</a> instance and should return a string
+representing the version.</p>
+<h3 id="available-implementations">Available Implementations</h3>
+<dl>
+<dt><code>guess-next-dev (default)</code></dt>
+<dd>
+<p>Automatically guesses the next development version (default).
+Guesses the upcoming release by incrementing the pre-release segment if present,
+otherwise by incrementing the micro segment. Then appends <code>.devN</code>.
+In case the tag ends with <code>.dev0</code> the version is not bumped
+and custom <code>.devN</code> versions will trigger an error.</p>
+<p><strong>Examples:</strong>
+- Tag <code>v1.0.0</code> → version <code>1.0.1.dev0</code> (if dirty or distance &gt; 0)
+- Tag <code>v1.0.0</code> → version <code>1.0.0</code> (if exact match)</p>
+</dd>
+<dt><code>calver-by-date</code></dt>
+<dd>
+<p>Calendar versioning scheme that generates versions based on dates.
+Uses the format <code>YY.MM.DD.patch</code> or <code>YYYY.MM.DD.patch</code> depending on the existing tag format.
+If the commit is on the same date as the latest tag, increments the patch number.
+Otherwise, uses the current date with patch 0. Supports branch-specific versioning
+for release branches.</p>
+<p><strong>Examples:</strong>
+- Tag <code>v23.01.15.0</code> on same day → version <code>23.01.15.1.devN</code>
+- Tag <code>v23.01.15.0</code> on different day (e.g., 2023-01-16) → version <code>23.01.16.0.devN</code>
+- Tag <code>v2023.01.15.0</code> → uses 4-digit year format for new versions</p>
+</dd>
+<dt><code>no-guess-dev</code></dt>
+<dd>
+<p>Does no next version guessing, just adds <code>.post1.devN</code>.
+This is the recommended replacement for the deprecated <code>post-release</code> scheme.</p>
+<p><strong>Examples:</strong>
+- Tag <code>v1.0.0</code> → version <code>1.0.0.post1.devN</code> (if distance &gt; 0)
+- Tag <code>v1.0.0</code> → version <code>1.0.0</code> (if exact match)</p>
+</dd>
+<dt><code>only-version</code></dt>
+<dd>
+<p>Only use the version from the tag, as given.</p>
+<div class="admonition warning">
+<p class="admonition-title">This means version is no longer pseudo unique per commit</p>
+</div>
+<p><strong>Examples:</strong>
+- Tag <code>v1.0.0</code> → version <code>1.0.0</code> (always, regardless of distance or dirty state)</p>
+</dd>
+<dt><code>post-release (deprecated)</code></dt>
+<dd>
+<p>Generates post release versions (adds <code>.postN</code>)
+after review of the version number pep this is considered a bad idea
+as post releases are intended to be chosen not autogenerated.</p>
+<div class="admonition warning">
+<p class="admonition-title">the recommended replacement is <code>no-guess-dev</code></p>
+</div>
+<p><strong>Examples:</strong>
+- Tag <code>1.0.0</code> → version <code>1.0.0.postN</code> (where N is the distance)</p>
+</dd>
+<dt><code>python-simplified-semver</code></dt>
+<dd>
+<p>Basic semantic versioning.</p>
+<p>Guesses the upcoming release by incrementing the minor segment
+and setting the micro segment to zero if the current branch contains the string <code>feature</code>,
+otherwise by incrementing the micro version. Then appending <code>.devN</code>.</p>
+<p>This scheme is not compatible with pre-releases.</p>
+<p><strong>Examples:</strong>
+- Tag <code>1.0.0</code> on non-feature branch → version <code>1.0.1.devN</code>
+- Tag <code>1.0.0</code> on feature branch → version <code>1.1.0.devN</code></p>
+</dd>
+<dt><code>release-branch-semver</code></dt>
+<dd>
+<p>Semantic versioning for projects with release branches.
+The same as <code>guess-next-dev</code> (incrementing the pre-release or micro segment)
+however when on a release branch: a branch whose name (ignoring namespace) parses as a version
+that matches the most recent tag up to the minor segment. Otherwise if on a
+non-release branch, increments the minor segment and sets the micro segment to
+zero, then appends <code>.devN</code></p>
+<p>Namespaces are unix pathname separated parts of a branch/tag name.</p>
+<p><strong>Examples:</strong>
+- Tag <code>1.0.0</code> on release branch <code>release-1.0</code> → version <code>1.0.1.devN</code></p>
+<ul>
+<li>Tag <code>1.0.0</code> on release branch <code>release/v1.0</code> → version <code>1.0.1.devN</code></li>
+<li>Tag <code>1.0.0</code> on development branch → version <code>1.1.0.devN</code></li>
+</ul>
+</dd>
+</dl>
+<h3 id="setuptools_scmlocal_scheme"><code>setuptools_scm.local_scheme</code></h3>
+<p>Configures how the local part of a version is rendered given a
+<a class="autorefs autorefs-internal" title="setuptools_scm.version.ScmVersion
+
+
+  
+      dataclass
+  " href="#setuptools_scm.version.ScmVersion">ScmVersion</a> instance and should return a string
+representing the local version.
+Dates and times are in Coordinated Universal Time (UTC), because as part
+of the version, they should be location independent.</p>
+<h4 id="available-implementations_1">Available Implementations</h4>
+<dl>
+<dt><code>node-and-date (default)</code></dt>
+<dd>Adds the node on dev versions and the date on dirty workdir</dd>
+<dt><code>node-and-timestamp</code></dt>
+<dd>Like <code>node-and-date</code> but with a timestamp of the form <code>%Y%m%d%H%M%S</code> instead</dd>
+<dt><code>dirty-tag</code></dt>
+<dd>Adds <code>+dirty</code> if the current workdir has changes</dd>
+<dt><code>no-local-version</code></dt>
+<dd>Omits local version, useful e.g. because PyPI does not support it</dd>
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
