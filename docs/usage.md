@@ -433,7 +433,7 @@ Git archives are supported, but require specific setup and understanding of how 
 
 When you create a `.git_archival.txt` file in your repository, it enables setuptools-scm to extract version information from Git archives (e.g., GitHub's source downloads). However, this file contains template placeholders that must be expanded by `git archive` - they won't work when building directly from your working directory.
 
-#### Setting Up Git Archival Support
+#### Setting up git archival support
 
 You can generate a `.git_archival.txt` file using the setuptools-scm CLI:
 
@@ -484,7 +484,7 @@ Finally, commit both files:
 $ git add .git_archival.txt .gitattributes && git commit -m "add git archive support"
 ```
 
-#### Understanding the Warnings
+#### Understanding the warnings
 
 If you see warnings like these when building your package:
 
@@ -498,7 +498,7 @@ This typically happens when:
 1. **Building from working directory**: You're running `python -m build` directly in your repository
 2. **Sdist extraction**: A build tool extracts your sdist to build wheels, but the extracted directory isn't a Git repository
 
-#### Recommended Build Workflows
+#### Recommended build workflows
 
 **For development builds:**
 Exclude `.git_archival.txt` from your package to avoid warnings:
@@ -523,7 +523,7 @@ $ python -m build .
 **For automated releases:**
 Many CI systems and package repositories (like GitHub Actions) automatically handle this correctly when building from Git archives.
 
-#### Integration with Package Managers
+#### Integration with package managers
 
 **MANIFEST.in exclusions:**
 ```{ .text file="MANIFEST.in"}
@@ -583,13 +583,13 @@ would be required when not using `setuptools-scm`.
 
 [file_finders]: https://setuptools.pypa.io/en/stable/userguide/extension.html
 
-#### How It Works
+#### How it works
 
 1. **Automatic Discovery**: When building source distributions (`python -m build --sdist`), setuptools automatically calls the `setuptools-scm` file finder
 2. **SCM Integration**: The file finder queries your SCM (Git/Mercurial) for all tracked files
 3. **Inclusion**: All tracked files are automatically included in the sdist
 
-#### Controlling File Inclusion
+#### Controlling file inclusion
 
 **To exclude unwanted files:**
 
@@ -633,7 +633,7 @@ would be required when not using `setuptools-scm`.
 
     This provides more stable and meaningful timestamps that reflect when you actually made changes to your code.
 
-**How It Works:**
+**How it works:**
 
 1. **Clean repository**: Uses commit timestamp from SCM
 2. **Dirty repository**: Uses latest modification time of changed files

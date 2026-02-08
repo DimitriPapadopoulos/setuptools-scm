@@ -28,7 +28,7 @@ Use the `[tool.setuptools_scm]` section when you need to:
 - Configure fallback behavior (`fallback_version`)
 - Or any other non-default behavior
 
-## Configuration Parameters
+## configuration parameters
 
 Configuration parameters can be configured in `pyproject.toml` or `setup.py`.
 Callables or other Python objects must be passed in `setup.py` (via the `use_scm_version` keyword argument).
@@ -70,7 +70,7 @@ Callables or other Python objects must be passed in `setup.py` (via the `use_scm
    It's broken for usage from an sdist and fixing it would be a fatal breaking change,
    use `version_file` instead.
 
-`relative_to: Path|PathLike[str] = "pyproject.toml"`
+`relative_to: Path | PathLike[str] = "pyproject.toml"`
 :   A file/directory from which the root can be resolved.
     Typically called by a script or module that is not in the root of the
     repository to point `setuptools_scm` at the root of the repository by
@@ -171,7 +171,7 @@ Callables or other Python objects must be passed in `setup.py` (via the `use_scm
         so as to stay compliant with the Python packaging standards.
 
 
-## Environment Variables
+## environment variables
 
 `SETUPTOOLS_SCM_PRETEND_VERSION`
 :   used as the primary source for the version number
@@ -216,7 +216,7 @@ Callables or other Python objects must be passed in `setup.py` (via the `use_scm
 
 
 
-## Automatic File Inclusion
+## automatic file inclusion
 
 !!! warning "Setuptools File Finder Integration"
 
@@ -276,9 +276,9 @@ tar -tzf dist/package-*.tar.gz
     The file finder cannot be disabled through configuration - it's automatically active when setuptools-scm is installed. If you need to disable it completely, you must remove setuptools-scm from your build environment (which also means you can't use it for versioning).
 
 
-## API Reference
+## api reference
 
-### Constants
+### constants
 
 ::: setuptools_scm._config.DEFAULT_TAG_REGEX
     options:
@@ -289,7 +289,7 @@ tar -tzf dist/package-*.tar.gz
       heading_level: 4
 
 
-### The Configuration Class
+### the configuration class
 ::: setuptools_scm.Configuration
     options:
       heading_level: 4

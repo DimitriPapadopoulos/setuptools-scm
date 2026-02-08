@@ -1,6 +1,6 @@
 # Customizing
 
-## Providing Project Local Version Schemes
+## providing project local version schemes
 
 As PEP 621 provides no way to specify local code as a build backend plugin,
 setuptools-scm has to piggyback on setuptools for passing functions over.
@@ -66,6 +66,6 @@ setup(use_scm_version={'local_scheme': clean_scheme})
 
 
 
-## Alternative Version Classes
+## alternative version classes
 
 ::: setuptools_scm.NonNormalizedVersion

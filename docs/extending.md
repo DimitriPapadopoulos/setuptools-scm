@@ -25,7 +25,7 @@
    Also uses the name of your SCM control directory as name of the entrypoint.
 
 
-### API Reference for SCM Version Objects
+### api reference for scm version objects
 
 ::: setuptools_scm.version.ScmVersion
     options:
@@ -134,7 +134,7 @@ representing the local version.
 Dates and times are in Coordinated Universal Time (UTC), because as part
 of the version, they should be location independent.
 
-#### Available Implementations
+#### Available implementations
 
 `node-and-date (default)`
 : Adds the node on dev versions and the date on dirty workdir

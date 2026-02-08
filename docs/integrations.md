@@ -28,7 +28,7 @@ This ensures a clean Git working directory before setuptools-scm detects the ver
 Reference: [ReadTheDocs Build Customization - Avoid having a dirty Git index](https://docs.readthedocs.com/platform/stable/build-customization.html#avoid-having-a-dirty-git-index)
 
 
-### Enforce Fail on Shallow Repositories
+### Enforce fail on shallow repositories
 
 ReadTheDocs may sometimes use shallow Git clones that lack the full history needed for proper version detection. You can use setuptools-scm's environment variable override system to enforce `fail_on_shallow` when building on ReadTheDocs:
 

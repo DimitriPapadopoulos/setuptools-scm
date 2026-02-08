@@ -1,6 +1,6 @@
 # Overrides
 
-## Pretend Versions
+## pretend versions
 
 setuptools-scm provides a mechanism to override the version number at build time.
 
@@ -10,7 +10,7 @@ as the override source for the version number unparsed string.
 To be specific about the package this applies for, one can use `SETUPTOOLS_SCM_PRETEND_VERSION_FOR_${DIST_NAME}`
 where the dist name normalization follows adapted PEP 503 semantics.
 
-## Pretend Metadata
+## pretend metadata
 
 setuptools-scm provides a mechanism to override individual version metadata fields at build time.
 
@@ -80,12 +80,12 @@ export SETUPTOOLS_SCM_PRETEND_VERSION="1.2.3.dev4+g1337beef"
 export SETUPTOOLS_SCM_PRETEND_METADATA='{node="g1337beef", distance=4}'
 ```
 
-## Config Overrides
+## config overrides
 
 setuptools-scm parses the environment variable `SETUPTOOLS_SCM_OVERRIDES_FOR_${DIST_NAME}`
 as a TOML inline map to override the configuration data from `pyproject.toml`.
 
-## Subprocess Timeouts
+## subprocess timeouts
 
 The environment variable `SETUPTOOLS_SCM_SUBPROCESS_TIMEOUT` allows to override the subprocess timeout.
 The default is 40 seconds and should work for most needs. However, users with Git LFS + Windows reported
