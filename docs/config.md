@@ -65,12 +65,12 @@ Callables or other Python objects must be passed in `setup.py` (via the `use_scm
     `scm_version` is the `ScmVersion` instance the current `version` was rendered from
 
 
-`write_to: Path | PathLike[str] | None = None`
+`write_to: PathLike[str] | Path | None = None`
 :  (deprecated) legacy option to create a version file relative to the SCM root.
    It's broken for usage from an sdist and fixing it would be a fatal breaking change,
    use `version_file` instead.
 
-`relative_to: Path | PathLike[str] = "pyproject.toml"`
+`relative_to: Path|PathLike[str] = "pyproject.toml"`
 :   A file/directory from which the root can be resolved.
     Typically called by a script or module that is not in the root of the
     repository to point `setuptools_scm` at the root of the repository by
