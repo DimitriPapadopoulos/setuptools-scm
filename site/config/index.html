@@ -1,0 +1,1685 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../customizing/">
+      
+      
+        <link rel="next" href="../integrations/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Configuration - setuptools scm</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#configuration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="setuptools scm" class="md-header__button md-logo" aria-label="setuptools scm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            setuptools scm
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Configuration
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="setuptools scm" class="md-nav__button md-logo" aria-label="setuptools scm" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    setuptools scm
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../customizing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customizing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#when-is-configuration-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When is configuration needed?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="When is configuration needed?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simplified-activation-no-configuration-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simplified Activation (No Configuration Needed)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explicit-configuration-full-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explicit Configuration (Full Control)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        configuration parameters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        environment variables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#automatic-file-inclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        automatic file inclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        api reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="api reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        constants
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="constants">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm._config.DEFAULT_TAG_REGEX" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DEFAULT_TAG_REGEX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.git.DEFAULT_DESCRIBE" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DEFAULT_DESCRIBE
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-configuration-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        the configuration class
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="the configuration class">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.Configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.Configuration.from_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        from_data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.Configuration.from_file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        from_file
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extending/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extending setuptools-scm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overrides/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overrides
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#when-is-configuration-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When is configuration needed?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="When is configuration needed?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simplified-activation-no-configuration-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simplified Activation (No Configuration Needed)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explicit-configuration-full-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explicit Configuration (Full Control)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        configuration parameters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        environment variables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#automatic-file-inclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        automatic file inclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        api reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="api reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        constants
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="constants">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm._config.DEFAULT_TAG_REGEX" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DEFAULT_TAG_REGEX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.git.DEFAULT_DESCRIBE" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DEFAULT_DESCRIBE
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-configuration-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        the configuration class
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="the configuration class">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.Configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.Configuration.from_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        from_data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setuptools_scm.Configuration.from_file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        from_file
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="configuration">Configuration</h1>
+<h2 id="when-is-configuration-needed">When is configuration needed?</h2>
+<p>setuptools-scm provides flexible activation options:</p>
+<h3 id="simplified-activation-no-configuration-needed">Simplified Activation (No Configuration Needed)</h3>
+<p>For basic usage, use the <code>simple</code> extra with no configuration:</p>
+<div class="highlight"><span class="filename">pyproject.toml</span><pre><span></span><code><span class="k">[build-system]</span>
+<span class="n">requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;setuptools&gt;=80&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;setuptools-scm[simple]&gt;=8&quot;</span><span class="p">]</span>
+
+<span class="k">[project]</span>
+<span class="n">dynamic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;version&quot;</span><span class="p">]</span>
+</code></pre></div>
+<p>This automatically enables version inference with default settings.</p>
+<h3 id="explicit-configuration-full-control">Explicit Configuration (Full Control)</h3>
+<p>Use the <code>[tool.setuptools_scm]</code> section when you need to:</p>
+<ul>
+<li>Write version files (<code>version_file</code>)</li>
+<li>Customize version schemes (<code>version_scheme</code>, <code>local_scheme</code>)</li>
+<li>Set custom tag patterns (<code>tag_regex</code>)</li>
+<li>Configure fallback behavior (<code>fallback_version</code>)</li>
+<li>Or any other non-default behavior</li>
+</ul>
+<h2 id="configuration-parameters">configuration parameters</h2>
+<p>Configuration parameters can be configured in <code>pyproject.toml</code> or <code>setup.py</code>.
+Callables or other Python objects must be passed in <code>setup.py</code> (via the <code>use_scm_version</code> keyword argument).</p>
+<dl>
+<dt><code>root : Path | PathLike[str]</code></dt>
+<dd>Relative path to the SCM root, defaults to <code>.</code> and is relative to the file path passed in <code>relative_to</code></dd>
+<dt><code>version_scheme : str | Callable[[ScmVersion], str]</code></dt>
+<dd>Configures how the version number is constructed; either an entrypoint name or a callable.
+  See <a href="../extending/#setuptools_scmversion_scheme">Version number construction</a> for predefined implementations.</dd>
+<dt><code>local_scheme : str | Callable[[ScmVersion], str]</code></dt>
+<dd>Configures how the local component of the version (the optional part after the <code>+</code>) is constructed;
+  either an entrypoint name or a callable.
+  See <a href="../extending/#setuptools_scmlocal_scheme">Version number construction</a> for predefined implementations.</dd>
+<dt><code>version_file: Path | PathLike[str] | None = None</code></dt>
+<dd>
+<p>A path to a file that gets replaced with a file containing the current
+version. It is ideal for creating a <code>_version.py</code> file within the
+package, typically used to avoid using <code>importlib.metadata</code>
+(which adds some overhead).</p>
+<div class="admonition warning">
+<p>Only files with <code>.py</code> and <code>.txt</code> extensions have builtin templates,
+for other file types it is necessary to provide <code>version_file_template</code>.</p>
+</div>
+</dd>
+<dt><code>version_file_template: str | None = None</code></dt>
+<dd>A new-style format string taking <code>version</code>, <code>scm_version</code> and <code>version_tuple</code> as parameters.
+<code>version</code> is the generated next_version as string,
+<code>version_tuple</code> is a tuple of split numbers/strings and
+<code>scm_version</code> is the <code>ScmVersion</code> instance the current <code>version</code> was rendered from</dd>
+<dt><code>write_to: PathLike[str] | Path | None = None</code></dt>
+<dd>(deprecated) legacy option to create a version file relative to the SCM root.
+   It's broken for usage from an sdist and fixing it would be a fatal breaking change,
+   use <code>version_file</code> instead.</dd>
+<dt><code>relative_to: Path | PathLike[str] = "pyproject.toml"</code></dt>
+<dd>A file/directory from which the root can be resolved.
+Typically called by a script or module that is not in the root of the
+repository to point <code>setuptools_scm</code> at the root of the repository by
+supplying <code>__file__</code>.</dd>
+<dt><code>tag_regex: str | Pattern[str]</code></dt>
+<dd>
+<p>A Python regex string to extract the version part from any SCM tag.
+The regex needs to contain either a single match group, or a group
+named <code>version</code>, that captures the actual version information.</p>
+<p>Defaults to the value of <a class="autorefs autorefs-internal" title="setuptools_scm._config.DEFAULT_TAG_REGEX
+
+
+  
+      module-attribute
+  " href="#setuptools_scm._config.DEFAULT_TAG_REGEX">setuptools_scm._config.DEFAULT_TAG_REGEX</a>
+which supports tags with optional "v" prefix (recommended), project prefixes,
+and various version formats.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The default regex supports common tag formats like <code>v1.0.0</code>, <code>myproject-v1.0.0</code>,
+and <code>1.0.0</code>. For best practices on tag naming, see
+<a href="../usage/#version-tag-formats">Version Tag Formats</a>.</p>
+</div>
+</dd>
+<dt><code>parentdir_prefix_version: str | None = None</code></dt>
+<dd>
+<p>If the normal methods for detecting the version (SCM version,
+sdist metadata) fail, and the parent directory name starts with
+<code>parentdir_prefix_version</code>, then this prefix is stripped and the rest of
+the parent directory name is matched with <code>tag_regex</code> to get a version
+string. If this parameter is unset (the default), then this fallback is
+not used.</p>
+<p>This was intended to cover GitHub's "release tarballs",
+which extract into directories named <code>projectname-tag/</code>
+(in which case <code>parentdir_prefix_version</code> can be set e.g. to <code>projectname-</code>).</p>
+</dd>
+<dt><code>fallback_version: str | None = None</code></dt>
+<dd>A version string that will be used if no other method for detecting the
+version worked (e.g., when using a tarball with no metadata). If this is
+unset (the default), <code>setuptools-scm</code> will error if it fails to detect the
+version.</dd>
+<dt><code>fallback_root: Path | PathLike[str] = "."</code></dt>
+<dd>
+<p>The directory to use when SCM metadata is not available (e.g., in extracted
+archives like PyPI tarballs). This is particularly useful for legacy
+configurations that need to work both in development (with SCM metadata)
+and from archives (without SCM metadata). Defaults to the current directory.</p>
+<p>When SCM metadata is present, the <code>root</code> parameter is used; when it's not
+available, <code>fallback_root</code> is used instead. This allows the same configuration
+to work in both scenarios without modification.</p>
+</dd>
+<dt><code>parse: Callable[[Path, Config], ScmVersion] | None = None</code></dt>
+<dd>A function that will be used instead of the discovered SCM
+for parsing the version. Use with caution,
+this is a function for advanced use and you should be
+familiar with the <code>setuptools-scm</code> internals to use it.</dd>
+<dt><code>scm.git.describe_command</code></dt>
+<dd>
+<p>This command will be used instead the default <code>git describe --long</code> command.</p>
+<p>Defaults to the value set by <a class="autorefs autorefs-internal" title="setuptools_scm.git.DEFAULT_DESCRIBE
+
+
+  
+      module-attribute
+  " href="#setuptools_scm.git.DEFAULT_DESCRIBE">setuptools_scm.git.DEFAULT_DESCRIBE</a></p>
+</dd>
+<dt><code>scm.git.pre_parse</code></dt>
+<dd>
+<p>A string specifying which git pre-parse function to use before parsing version information.
+Available options:</p>
+<ul>
+<li><code>"warn_on_shallow"</code> (default): Warns when the repository is shallow</li>
+<li><code>"fail_on_shallow"</code>: Fails with an error when the repository is shallow</li>
+<li><code>"fetch_on_shallow"</code>: Automatically fetches to rectify shallow repositories</li>
+<li>
+<p><code>"fail_on_missing_submodules"</code>: Fails when submodules are defined but not initialized</p>
+<p>The <code>"fail_on_missing_submodules"</code> option is useful to prevent packaging incomplete
+    projects when submodules are required for a complete build.</p>
+</li>
+</ul>
+<p>Note: This setting is overridden by any explicit <code>pre_parse</code> parameter passed to the git parse function.</p>
+</dd>
+<dt><code>git_describe_command</code> (deprecated)</dt>
+<dd>
+<p><strong>Deprecated since 8.4.0</strong>: Use <code>scm.git.describe_command</code> instead.</p>
+<p>This field is maintained for backward compatibility but will issue a deprecation warning when used.</p>
+</dd>
+<dt><code>normalize</code></dt>
+<dd>A boolean flag indicating if the version string should be normalized.
+Defaults to <code>True</code>. Setting this to <code>False</code> is equivalent to setting
+<code>version_cls</code> to <a class="autorefs autorefs-internal" title="setuptools_scm.NonNormalizedVersion" href="../customizing/#setuptools_scm.NonNormalizedVersion">setuptools_scm.NonNormalizedVersion</a></dd>
+<dt><code>version_cls: type | str = packaging.version.Version</code></dt>
+<dd>
+<p>An optional class used to parse, verify and possibly normalize the version
+string. Its constructor should receive a single string argument, and its
+<code>str</code> should return the normalized version string to use.
+This option can also receive a class qualified name as a string.</p>
+<p>The <a class="autorefs autorefs-internal" title="setuptools_scm.NonNormalizedVersion" href="../customizing/#setuptools_scm.NonNormalizedVersion">setuptools_scm.NonNormalizedVersion</a> convenience class is
+provided to disable the normalization step done by
+<code>packaging.version.Version</code>. If this is used while <code>setuptools-scm</code>
+is integrated in a setuptools packaging process, the non-normalized
+version number will appear in all files (see <code>version_file</code> note).</p>
+<div class="admonition note">
+<p class="admonition-title">normalization still applies to artifact filenames</p>
+<p>Setuptools will still normalize it to create the final distribution,
+so as to stay compliant with the Python packaging standards.</p>
+</div>
+</dd>
+</dl>
+<h2 id="environment-variables">environment variables</h2>
+<dl>
+<dt><code>SETUPTOOLS_SCM_PRETEND_VERSION</code></dt>
+<dd>
+<p>used as the primary source for the version number
+in which case it will be an unparsed string</p>
+<div class="admonition warning">
+<p>it is strongly recommended to use distribution-specific pretend versions
+(see below).</p>
+</div>
+</dd>
+<dt><code>SETUPTOOLS_SCM_PRETEND_VERSION_FOR_${DIST_NAME}</code></dt>
+<dd>
+<p>used as the primary source for the version number,
+in which case it will be an unparsed string.
+Specifying distribution-specific pretend versions will
+avoid possible collisions with third party distributions
+also using <code>setuptools-scm</code></p>
+<p>the dist name normalization follows adapted PEP 503 semantics, with one or
+more of ".-_" being replaced by a single "_", and the name being upper-cased</p>
+<p>this will take precedence over <code>SETUPTOOLS_SCM_PRETEND_VERSION</code></p>
+</dd>
+<dt><code>SETUPTOOLS_SCM_DEBUG</code></dt>
+<dd>Enable debug logging</dd>
+<dt><code>SOURCE_DATE_EPOCH</code></dt>
+<dd>Used as the timestamp from which the
+<code>node-and-date</code> and <code>node-and-timestamp</code> local parts are
+derived, otherwise the current time is used
+(https://reproducible-builds.org/docs/source-date-epoch/)</dd>
+<dt><code>SETUPTOOLS_SCM_IGNORE_VCS_ROOTS</code></dt>
+<dd>A <code>os.pathsep</code> separated list
+of directory names to ignore for root finding</dd>
+<dt><code>SETUPTOOLS_SCM_HG_COMMAND</code></dt>
+<dd>
+<p>Command used for running Mercurial (defaults to <code>hg</code>)</p>
+<p>For example, set this to <code>chg</code> to reduce start-up overhead of Mercurial</p>
+</dd>
+</dl>
+<h2 id="automatic-file-inclusion">automatic file inclusion</h2>
+<div class="admonition warning">
+<p class="admonition-title">Setuptools File Finder Integration</p>
+<p><code>setuptools-scm</code> automatically registers a setuptools file finder that includes all SCM-tracked files in source distributions. This behavior is <strong>always active</strong> when setuptools-scm is installed, regardless of whether you use it for versioning.</p>
+</div>
+<p><strong>How it works:</strong></p>
+<p><code>setuptools-scm</code> provides a <code>setuptools.file_finders</code> entry point that:</p>
+<ol>
+<li>Automatically discovers SCM-managed files (Git, Mercurial)</li>
+<li>Includes them in source distributions (<code>python -m build --sdist</code>)</li>
+<li>Works for <code>include_package_data = True</code> in package building</li>
+</ol>
+<p><strong>Entry point registration:</strong>
+<div class="highlight"><pre><span></span><code><span class="k">[project.entry-points.</span><span class="s2">&quot;setuptools.file_finders&quot;</span><span class="k">]</span>
+<span class="n">setuptools_scm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;setuptools_scm._file_finders:find_files&quot;</span>
+</code></pre></div></p>
+<p><strong>Files included by default:</strong>
+- All files tracked by Git (<code>git ls-files</code>)
+- All files tracked by Mercurial (<code>hg files</code>)
+- Includes: source code, documentation, tests, config files, etc.
+- Excludes: untracked files, files in <code>.gitignore</code>/<code>.hgignore</code></p>
+<p><strong>Controlling inclusion:</strong></p>
+<p>Use <code>MANIFEST.in</code> to override the automatic behavior:</p>
+<div class="highlight"><span class="filename">MANIFEST.in</span><pre><span></span><code># Exclude development files
+exclude .pre-commit-config.yaml
+exclude tox.ini
+global-exclude *.pyc __pycache__/
+
+# Exclude entire directories
+prune docs/
+prune testing/
+
+# Include non-SCM files
+include data/important.json
+</code></pre></div>
+<p><strong>Debugging file inclusion:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># List files that will be included</span>
+python<span class="w"> </span>-m<span class="w"> </span>setuptools_scm<span class="w"> </span>ls
+
+<span class="c1"># Build and inspect sdist contents</span>
+python<span class="w"> </span>-m<span class="w"> </span>build<span class="w"> </span>--sdist
+tar<span class="w"> </span>-tzf<span class="w"> </span>dist/package-*.tar.gz
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Cannot be disabled</p>
+<p>The file finder cannot be disabled through configuration - it's automatically active when setuptools-scm is installed. If you need to disable it completely, you must remove setuptools-scm from your build environment (which also means you can't use it for versioning).</p>
+</div>
+<h2 id="api-reference">api reference</h2>
+<h3 id="constants">constants</h3>
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="setuptools_scm._config.DEFAULT_TAG_REGEX" class="doc doc-heading">
+            <span class="doc doc-object-name doc-attribute-name">setuptools_scm._config.DEFAULT_TAG_REGEX</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">DEFAULT_TAG_REGEX</span> <span class="o">=</span> <span class="nb">compile</span><span class="p">(</span><span class="s1">&#39;^(?:[</span><span class="se">\\</span><span class="s1">w-]+-)?(?P&lt;version&gt;[vV]?</span><span class="se">\\</span><span class="s1">d+(?:</span><span class="se">\\</span><span class="s1">.</span><span class="se">\\</span><span class="s1">d+){0,2}[^</span><span class="se">\\</span><span class="s1">+]*)(?:</span><span class="se">\\</span><span class="s1">+.*)?$&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+        <p>default tag regex that tries to match PEP440 style versions
+with prefix consisting of dashed words</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="setuptools_scm.git.DEFAULT_DESCRIBE" class="doc doc-heading">
+            <span class="doc doc-object-name doc-attribute-name">setuptools_scm.git.DEFAULT_DESCRIBE</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+  </span>
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><span class="n">DEFAULT_DESCRIBE</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;describe&#39;</span><span class="p">,</span> <span class="s1">&#39;--dirty&#39;</span><span class="p">,</span> <span class="s1">&#39;--tags&#39;</span><span class="p">,</span> <span class="s1">&#39;--long&#39;</span><span class="p">,</span> <span class="s1">&#39;--abbrev=40&#39;</span><span class="p">,</span> <span class="s1">&#39;--match&#39;</span><span class="p">,</span> <span class="s1">&#39;*[0-9]*&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+    <div class="doc doc-contents first">
+
+    </div>
+
+</div><h3 id="the-configuration-class">the configuration class</h3>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h4 id="setuptools_scm.Configuration" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">setuptools_scm.Configuration</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+</h4>
+
+
+    <div class="doc doc-contents first">
+
+
+
+        <p>Global configuration model</p>
+
+
+
+
+
+
+
+
+              <details class="mkdocstrings-source">
+                <summary>Source code in <code>src/setuptools_scm/_config.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<span class="k">class</span> <span class="nc">Configuration</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Global configuration model&quot;&quot;&quot;</span>
+
+    <span class="n">relative_to</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">PathT</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">root</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">PathT</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span>
+    <span class="n">version_scheme</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">VERSION_SCHEME</span> <span class="o">=</span> <span class="n">DEFAULT_VERSION_SCHEME</span>
+    <span class="n">local_scheme</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">VERSION_SCHEME</span> <span class="o">=</span> <span class="n">DEFAULT_LOCAL_SCHEME</span>
+    <span class="n">tag_regex</span><span class="p">:</span> <span class="n">Pattern</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">DEFAULT_TAG_REGEX</span>
+    <span class="n">parentdir_prefix_version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">fallback_version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">fallback_root</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">PathT</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span>
+    <span class="n">write_to</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">PathT</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">write_to_template</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">version_file</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">PathT</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">version_file_template</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">parse</span><span class="p">:</span> <span class="n">ParseFunction</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">git_describe_command</span><span class="p">:</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">InitVar</span><span class="p">[</span><span class="n">_t</span><span class="o">.</span><span class="n">CMD_TYPE</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">_GitDescribeCommandDescriptor</span><span class="p">()</span>
+    <span class="p">)</span>
+
+    <span class="n">dist_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">version_cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">_VersionT</span><span class="p">]</span> <span class="o">=</span> <span class="n">_Version</span>
+    <span class="n">search_parent_directories</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="n">parent</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">PathT</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># Nested SCM configurations</span>
+    <span class="n">scm</span><span class="p">:</span> <span class="n">ScmConfiguration</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">field</span><span class="p">(</span>
+        <span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">ScmConfiguration</span><span class="p">()</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Deprecated fields (handled in __post_init__)</span>
+
+    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">git_describe_command</span><span class="p">:</span> <span class="n">_t</span><span class="o">.</span><span class="n">CMD_TYPE</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tag_regex</span> <span class="o">=</span> <span class="n">_check_tag_regex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag_regex</span><span class="p">)</span>
+
+        <span class="c1"># Handle deprecated git_describe_command</span>
+        <span class="c1"># Check if it&#39;s a descriptor object (happens when no value is passed)</span>
+        <span class="k">if</span> <span class="n">git_describe_command</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span>
+            <span class="n">git_describe_command</span><span class="p">,</span> <span class="n">_GitDescribeCommandDescriptor</span>
+        <span class="p">):</span>
+            <span class="c1"># Check if this is being called from dataclasses</span>
+            <span class="n">is_from_dataclasses</span> <span class="o">=</span> <span class="n">_is_called_from_dataclasses</span><span class="p">()</span>
+
+            <span class="n">same_value</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">scm</span><span class="o">.</span><span class="n">git</span><span class="o">.</span><span class="n">describe_command</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">scm</span><span class="o">.</span><span class="n">git</span><span class="o">.</span><span class="n">describe_command</span> <span class="o">==</span> <span class="n">git_describe_command</span>
+            <span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">is_from_dataclasses</span> <span class="ow">and</span> <span class="n">same_value</span><span class="p">:</span>
+                <span class="c1"># Ignore the passed value - it&#39;s from dataclasses.replace() with same value</span>
+                <span class="k">pass</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                    <span class="s2">&quot;Configuration field &#39;git_describe_command&#39; is deprecated. &quot;</span>
+                    <span class="s2">&quot;Use &#39;scm.git.describe_command&#39; instead.&quot;</span><span class="p">,</span>
+                    <span class="ne">DeprecationWarning</span><span class="p">,</span>
+                    <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="c1"># Check for conflicts</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scm</span><span class="o">.</span><span class="n">git</span><span class="o">.</span><span class="n">describe_command</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="s2">&quot;Cannot specify both &#39;git_describe_command&#39; (deprecated) and &quot;</span>
+                        <span class="s2">&quot;&#39;scm.git.describe_command&#39;. Please use only &#39;scm.git.describe_command&#39;.&quot;</span>
+                    <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">scm</span><span class="o">.</span><span class="n">git</span><span class="o">.</span><span class="n">describe_command</span> <span class="o">=</span> <span class="n">git_describe_command</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">absolute_root</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_check_absolute_root</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">relative_to</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_file</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">os</span><span class="o">.</span><span class="n">PathLike</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;pyproject.toml&quot;</span><span class="p">,</span>
+        <span class="n">dist_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">pyproject_data</span><span class="p">:</span> <span class="n">PyProjectData</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Configuration</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">                Read Configuration from pyproject.toml (or similar).</span>
+<span class="sd">                Raises exceptions when file is not found or toml is</span>
+<span class="sd">                not installed or the file has invalid format.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">        - name: path to pyproject.toml</span>
+<span class="sd">        - dist_name: name of the distribution</span>
+<span class="sd">        - **kwargs: additional keyword arguments to pass to the Configuration constructor</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">pyproject_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">pyproject_data</span> <span class="o">=</span> <span class="n">_read_pyproject</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">_get_args_for_pyproject</span><span class="p">(</span><span class="n">pyproject_data</span><span class="p">,</span> <span class="n">dist_name</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="n">args</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">read_toml_overrides</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;dist_name&quot;</span><span class="p">]))</span>
+        <span class="n">relative_to</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;relative_to&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_data</span><span class="p">(</span><span class="n">relative_to</span><span class="o">=</span><span class="n">relative_to</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_data</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">relative_to</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">os</span><span class="o">.</span><span class="n">PathLike</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Configuration</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        given configuration data</span>
+<span class="sd">        create a config instance after validating tag regex/version class</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">version_cls</span> <span class="o">=</span> <span class="n">_validate_version_cls</span><span class="p">(</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;version_cls&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;normalize&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Handle nested SCM configuration</span>
+        <span class="n">scm_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;scm&quot;</span><span class="p">,</span> <span class="p">{})</span>
+
+        <span class="c1"># Handle nested SCM configuration</span>
+
+        <span class="n">scm_config</span> <span class="o">=</span> <span class="n">ScmConfiguration</span><span class="o">.</span><span class="n">from_data</span><span class="p">(</span><span class="n">scm_data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">relative_to</span><span class="o">=</span><span class="n">relative_to</span><span class="p">,</span>
+            <span class="n">version_cls</span><span class="o">=</span><span class="n">version_cls</span><span class="p">,</span>
+            <span class="n">scm</span><span class="o">=</span><span class="n">scm_config</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">data</span><span class="p">,</span>
+        <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="setuptools_scm.Configuration.from_data" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">from_data</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
+  </span>
+
+</h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">from_data</span><span class="p">(</span><span class="n">relative_to</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">PathLike</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Configuration</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>given configuration data
+create a config instance after validating tag regex/version class</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/setuptools_scm/_config.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
+<span class="k">def</span> <span class="nf">from_data</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span> <span class="n">relative_to</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">os</span><span class="o">.</span><span class="n">PathLike</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Configuration</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    given configuration data</span>
+<span class="sd">    create a config instance after validating tag regex/version class</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">version_cls</span> <span class="o">=</span> <span class="n">_validate_version_cls</span><span class="p">(</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;version_cls&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;normalize&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Handle nested SCM configuration</span>
+    <span class="n">scm_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;scm&quot;</span><span class="p">,</span> <span class="p">{})</span>
+
+    <span class="c1"># Handle nested SCM configuration</span>
+
+    <span class="n">scm_config</span> <span class="o">=</span> <span class="n">ScmConfiguration</span><span class="o">.</span><span class="n">from_data</span><span class="p">(</span><span class="n">scm_data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+        <span class="n">relative_to</span><span class="o">=</span><span class="n">relative_to</span><span class="p">,</span>
+        <span class="n">version_cls</span><span class="o">=</span><span class="n">version_cls</span><span class="p">,</span>
+        <span class="n">scm</span><span class="o">=</span><span class="n">scm_config</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">data</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h5 id="setuptools_scm.Configuration.from_file" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">from_file</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
+  </span>
+
+</h5>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">from_file</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">PathLike</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;pyproject.toml&#39;</span><span class="p">,</span> <span class="n">dist_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">pyproject_data</span><span class="p">:</span> <span class="n">PyProjectData</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Configuration</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <pre><code>    Read Configuration from pyproject.toml (or similar).
+    Raises exceptions when file is not found or toml is
+    not installed or the file has invalid format.
+</code></pre>
+<p>Parameters:
+- name: path to pyproject.toml
+- dist_name: name of the distribution
+- **kwargs: additional keyword arguments to pass to the Configuration constructor</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/setuptools_scm/_config.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
+<span class="k">def</span> <span class="nf">from_file</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">os</span><span class="o">.</span><span class="n">PathLike</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;pyproject.toml&quot;</span><span class="p">,</span>
+    <span class="n">dist_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">pyproject_data</span><span class="p">:</span> <span class="n">PyProjectData</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Configuration</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Read Configuration from pyproject.toml (or similar).</span>
+<span class="sd">            Raises exceptions when file is not found or toml is</span>
+<span class="sd">            not installed or the file has invalid format.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    - name: path to pyproject.toml</span>
+<span class="sd">    - dist_name: name of the distribution</span>
+<span class="sd">    - **kwargs: additional keyword arguments to pass to the Configuration constructor</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">pyproject_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">pyproject_data</span> <span class="o">=</span> <span class="n">_read_pyproject</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">_get_args_for_pyproject</span><span class="p">(</span><span class="n">pyproject_data</span><span class="p">,</span> <span class="n">dist_name</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="n">args</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">read_toml_overrides</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s2">&quot;dist_name&quot;</span><span class="p">]))</span>
+    <span class="n">relative_to</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;relative_to&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_data</span><span class="p">(</span><span class="n">relative_to</span><span class="o">=</span><span class="n">relative_to</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
