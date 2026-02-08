@@ -166,7 +166,7 @@ Callables or other Python objects must be passed in `setup.py` (via the `use_scm
     is integrated in a setuptools packaging process, the non-normalized
     version number will appear in all files (see `version_file` note).
 
-    !!! note "Normalization Still Applies to Artifact Filenames"
+    !!! note "normalization still applies to artifact filenames"
         Setuptools will still normalize it to create the final distribution,
         so as to stay compliant with the Python packaging standards.
 

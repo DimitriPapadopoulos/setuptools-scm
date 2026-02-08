@@ -121,11 +121,11 @@ $ python -m setuptools_scm ls # output trimmed for brevity
 ...
 ```
 
-!!! note "Committed Files Only"
+!!! note "Committed files only"
 
     Currently only committed files are listed; this might change in the future.
 
-!!! warning "Sdists/Archives Don't Provide File Lists"
+!!! warning "sdists/archives don't provide file lists"
 
     Currently there is no built-in mechanism
     to safely transfer file lists to sdists or obtain them from archives.
